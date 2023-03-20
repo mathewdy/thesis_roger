@@ -25,9 +25,23 @@ ob_start();
 </html>
 
 <?php
-if(isset($_POST[''])){
+if(isset($_POST['login'])){
     $username = $_POST['username'];
     $password = $_POST['password'];
+
+    $sql = "SELECT * FROM users WHERE username= '$username' AND password = '$password'";
+    $run = mysqli_query($conn,$sql);
+
+    if(mysqli_num_rows($run) > 0){
+        foreach($run as $row){
+            $_SESSION['username'] = $username;
+            $_SESSION['password'] = $password;
+            $_SESSION['id'] = $row['id'];
+            header('Location: home.php');
+        }
+    }else{
+        echo "user not found";
+    }
 }
 
 
