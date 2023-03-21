@@ -45,7 +45,10 @@ ob_start();
                                     <td>
                                         <!---kapag pinindot yung UPDATE-->
                                         <!---it's either profile OR another button to checked in--->
-                                        <a href="">Edit</a>
+                                        <form action="" method="POST">
+                                            <input type="hidden" name="reference_number" value="<?php echo $row['reference_number']?>"> 
+                                            <input type="submit" name="checked_in" value="Check In">
+                                        </form>
                                         <a href="">Delete</a>
                                     </td>
                                 </tr>
@@ -62,6 +65,19 @@ ob_start();
 
 
 <?php
+
+if(isset($_POST['checked_in'])){
+    $check = 1;
+    $reference_number = $_POST['reference_number'];
+    $update = "UPDATE booked SET status = '$check' WHERE reference_number = '$reference_number' ";
+    $run_update = mysqli_query($conn,$update);
+
+    if($run_update){
+        echo "updated";
+    }else{
+        echo "error" . $conn->error;
+    }
+}
 
 ob_end_flush();
 ?>

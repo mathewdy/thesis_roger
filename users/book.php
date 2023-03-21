@@ -78,9 +78,9 @@ if(isset($_POST['search'])){
                 <form action="fill-out.php" method="POST">
 
                 <label for="">Name</label>
-                <input type="text" name="full_name">
+                <input type="text" name="full_name" required>
                 <label for="">Contact Number</label>
-                <input type="text" name="contact_number">
+                <input type="text" name="contact_number" required>
 
                 <label for="">Image</label>
                 <br>    
