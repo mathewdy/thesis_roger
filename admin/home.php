@@ -17,8 +17,7 @@ session_start();
     <a href="booked.php">Booked</a>
     <a href="check_in.php">Check In</a>
     <a href="check_out.php">Check Out</a>
-    <a href="">Room Category</a>
-    <a href="">Rooms</a>
+    <a href="rooms.php">Room Category</a>
     <a href="users.php">Users</a>
 </body>
 </html>
