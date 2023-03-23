@@ -33,11 +33,13 @@ ob_start();
                     $sql = "SELECT * FROM booked";
                     $run = mysqli_query($conn,$sql);
                     if(mysqli_num_rows($run) > 0){
+                        $count = 0;
                         foreach($run as $row){
+                            $count++;
                             ?>
 
                                 <tr>
-                                    <td>#</td>
+                                    <td><?php echo $count?></td>
                                     <td><?php echo $row['reference_number']?></td>
                                     <td><?php echo $row['room_id']?></td>
                                     <td><?php echo $row['name']?></td>
@@ -49,7 +51,7 @@ ob_start();
                                             <input type="hidden" name="reference_number" value="<?php echo $row['reference_number']?>"> 
                                             <input type="submit" name="checked_in" value="Check In">
                                         </form>
-                                        <a href="">Delete</a>
+                                        <a href="delete-booked.php?id=<?php echo $row['id']?>">Delete</a>
                                     </td>
                                 </tr>
 
@@ -73,7 +75,8 @@ if(isset($_POST['checked_in'])){
     $run_update = mysqli_query($conn,$update);
 
     if($run_update){
-        echo "updated";
+        echo "<script>window.location.href='check_out.php' </script>";
+
     }else{
         echo "error" . $conn->error;
     }

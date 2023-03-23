@@ -38,6 +38,7 @@ ob_start();
                 <th scope="col">Room ID</th>
                 <th scope="col">Name</th>
                 <th scope="col">Contact Number</th>
+                <th>Room Category</th>
                 <th>Modify</th>
             </tr>
         </thead>
@@ -47,18 +48,37 @@ ob_start();
                 $sql = "SELECT * FROM booked WHERE id = '1'";
                 $run = mysqli_query($conn,$sql);
                 if(mysqli_num_rows($run) > 0){
+                    $count = 0;
                     foreach($run as $row){
+                        $count++;
                         ?>
 
                             <tr>
-                                <td>#</td>
+                                <td><?php echo $count?></td>
                                 <td><?php echo $row['reference_number']?></td>
                                 <td><?php echo $row['room_id']?></td>
                                 <td><?php echo $row['name']?></td>
                                 <td><?php echo $row['contact_number']?></td>
                                 <td>
-                                    <a href="">Edit</a>
-                                    <a href="">Delete</a>
+                                    <?php
+
+                                        if($row['room_category_id'] == '1'){
+                                            echo "Family Room";
+                                        }elseif($row['room_category_id'] == '2'){
+                                            echo "Deluxe Room";
+                                        }elseif($row['room_category_id'] == '3'){
+                                            echo "Single Room";
+                                        }else{
+                                            echo "Twin Room";
+                                        }
+                                    ?>
+                                </td>
+                                <td>
+                                    <form action="" method="POST">
+                                        <input type="hidden" name="reference_number" value="<?php echo $row['reference_number']?>" >
+                                        <input type="submit" name="check_in" value="Check Out">
+                                    </form>
+                                    <a href="delete-check-in.php">Delete</a>
                                 </td>
                             </tr>
 
@@ -74,6 +94,23 @@ ob_start();
 </html>
 
 <?php
+
+if(isset($_POST['check_out'])){
+
+    //gagawa ako ng query para auto insert sa history after ng comeplete details
+    $check = 1;
+    $reference_number = $_POST['reference_number'];
+    $update = "UPDATE booked SET status = '$check' WHERE reference_number = '$reference_number' ";
+    $run_update = mysqli_query($conn,$update);
+
+    if($run_update){
+        echo "<script>window.location.href='check_out.php' </script>";
+
+    }else{
+        echo "error" . $conn->error;
+    }
+}
+
 
 ob_end_flush();
 ?>

@@ -94,7 +94,7 @@ if(isset($_POST['add_room'])){
         $run = mysqli_query($conn,$query);
         move_uploaded_file($_FILES["image"]["tmp_name"], "rooms/" . $_FILES["image"]["name"]);
         if($run){
-            echo "added";
+            echo "<script>window.location.href='rooms.php' </script>";
         }else{
             echo "error" . $conn->error;
         }

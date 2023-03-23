@@ -16,6 +16,15 @@ session_start();
 </head>
 <body>
     <a href="home.php">Home</a>
+
+    <!-----mamaya gagawa din ako ng add users dito---->
+
+    <form action="" method="POST">
+        <input type="text" name="name">
+        <input type="text" name="username">
+        <input type="password" name="password">
+        <input type="submit" name="add_user" value="Save">
+    </form>
     <!--data table din to-->
 
     <table>
@@ -33,18 +42,20 @@ session_start();
             $run = mysqli_query($conn,$sql);
 
             if(mysqli_num_rows($run) > 0){
+                $count = 0;
                 foreach($run as $row){
+                    $count++;
                     ?>
 
 
                         <tr>
-                            <td>#</td>
+                            <td><?php echo $count?></td>
                             <td><?php echo $row['name']?></td>
                             <td><?php echo $row['username']?></td>
                             <td><?php echo $row['password']?></td>
                             <td>
                                 <a href="">Edit</a>
-                                <a href="">Delete</a>
+                                <a href="delete-users.php?id=<?php echo $row['id']?>">Delete</a>
                             </td>
                         </tr>
 
@@ -59,6 +70,26 @@ session_start();
 </html>
 
 <?php
+
+if(isset($_POST['add_user'])){
+
+    date_default_timezone_set("Asia/Manila");
+    $date = date('y-m-d');
+
+    $name = $_POST['name'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    $sql_insert = "INSERT INTO users (name,username,password,date_created)
+    VALUES ('$name','$username', '$password', '$date')";
+    $run_insert = mysqli_query($conn,$sql_insert);
+
+    if($run_insert){
+        echo "<script>window.location.href='users.php' </script>";
+    }else{
+        echo "error" . $conn->error;
+    }
+}
 
 ob_end_flush();
 

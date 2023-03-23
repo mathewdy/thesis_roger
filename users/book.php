@@ -88,6 +88,7 @@ if(isset($_POST['search'])){
                 <br>
                 <label for="">Name</label>
                 <input type="hidden" name="category" value="<?php echo $row['category']?>">
+                <input type="hidden" name="id" value="<?php echo $row['id']?>">
                 <p><?php echo $row['category']. " " . "room"?></p>
                 <br>
                 <label for="">Price</label>
