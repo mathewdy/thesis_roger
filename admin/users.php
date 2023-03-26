@@ -54,7 +54,7 @@ session_start();
                             <td><?php echo $row['username']?></td>
                             <td><?php echo $row['password']?></td>
                             <td>
-                                <a href="">Edit</a>
+                                <a href="edit-users.php?id=<?php echo $row['id']?>">Edit</a>
                                 <a href="delete-users.php?id=<?php echo $row['id']?>">Delete</a>
                             </td>
                         </tr>

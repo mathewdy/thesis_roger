@@ -15,6 +15,7 @@ session_start();
     <title>Document</title>
 </head>
 <body>
+<a href="home.php">Home</a>
 
 
 <form action="" method="POST" enctype="multipart/form-data">
@@ -25,7 +26,6 @@ session_start();
 </form>
 
 <!---view image of rooms--->
-
 <table>
     <thead>
         <th>#</th>
@@ -55,8 +55,8 @@ session_start();
                                 <?php echo $row['price']?>
                             </td>
                             <td>
-                                <a href="">Edit</a>
-                                <a href="">Delete</a>
+                                <a href="edit-rooms.php?id=<?php echo $row['id']?>">Edit</a>
+                                <a href="delete-room.php?id=<?php echo $row['id'] ?>">Delete</a>
                             </td>
                         </tr>
 

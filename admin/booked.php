@@ -75,7 +75,7 @@ if(isset($_POST['checked_in'])){
     $run_update = mysqli_query($conn,$update);
 
     if($run_update){
-        echo "<script>window.location.href='check_out.php' </script>";
+        echo "<script>window.location.href='check-in.php' </script>";
 
     }else{
         echo "error" . $conn->error;

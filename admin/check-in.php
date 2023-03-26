@@ -16,18 +16,30 @@ ob_start();
 </head>
 <body>
     
-    <!---gagawa ako filter--->
-    <form action="" method="POST">
-        <select name="" id="">
-            <option value="">All</option>
-            <option value="">Deluxe Room</option>
-            <option value="">Family Room</option>
-            <option value="">Single Room</option>
-            <option value="">Twin Bed Room</option>
+<form action="" method="POST">
+    <select name="room" id="">
 
-        </select>
-    </form>
+        <?php
 
+        $sql_filter = "SELECT * FROM room_category";
+        $run_filter = mysqli_query($conn,$sql_filter);
+
+        if(mysqli_num_rows($run_filter) > 0){
+            foreach($run_filter as $row_filter){
+                ?>
+                    <!---gagawa ako filter--->
+                
+                        <option value="<?php echo $row_filter['id']?>"><?php echo ucfirst($row_filter['category']) . " " . "Room"?></option>
+                <?php
+            }
+        }
+
+        ?>
+    </select>
+        <input type="submit" name="filter" value="Filter">
+</form>
+
+  
     <!---fetch data------>
 
     <table class="table">
@@ -45,7 +57,7 @@ ob_start();
         <tbody>
             <?php
 
-                $sql = "SELECT * FROM booked WHERE id = '1'";
+                $sql = "SELECT * FROM booked WHERE status = '1'";
                 $run = mysqli_query($conn,$sql);
                 if(mysqli_num_rows($run) > 0){
                     $count = 0;
@@ -111,6 +123,75 @@ if(isset($_POST['check_out'])){
     }
 }
 
+
+if(isset($_POST['filter'])){
+    echo $filter = $_POST['room'];
+
+    ?>
+    <table class="table">
+    <!---fetch data------>
+
+        <thead>
+            <tr>
+                <th>#</th>
+                <th scope="col">Reference #</th>
+                <th scope="col">Room ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Contact Number</th>
+                <th>Room Category</th>
+                <th>Modify</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+
+                $sql = "SELECT * FROM booked WHERE status = '1' AND room_category_id = '$filter'";
+                $run = mysqli_query($conn,$sql);
+                if(mysqli_num_rows($run) > 0){
+                    $count = 0;
+                    foreach($run as $row){
+                        $count++;
+                        ?>
+
+                            <tr>
+                                <td><?php echo $count?></td>
+                                <td><?php echo $row['reference_number']?></td>
+                                <td><?php echo $row['room_id']?></td>
+                                <td><?php echo $row['name']?></td>
+                                <td><?php echo $row['contact_number']?></td>
+                                <td>
+                                    <?php
+
+                                        if($row['room_category_id'] == '1'){
+                                            echo "Family Room";
+                                        }elseif($row['room_category_id'] == '2'){
+                                            echo "Deluxe Room";
+                                        }elseif($row['room_category_id'] == '3'){
+                                            echo "Single Room";
+                                        }else{
+                                            echo "Twin Room";
+                                        }
+                                    ?>
+                                </td>
+                                <td>
+                                    <form action="" method="POST">
+                                        <input type="hidden" name="reference_number" value="<?php echo $row['reference_number']?>" >
+                                        <input type="submit" name="check_in" value="Check Out">
+                                    </form>
+                                    <a href="delete-check-in.php">Delete</a>
+                                </td>
+                            </tr>
+
+                        <?php
+                    }
+                }
+
+            ?>
+        </tbody>
+    </table> 
+    
+    <?php
+}
 
 ob_end_flush();
 ?>
