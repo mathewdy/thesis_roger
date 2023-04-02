@@ -116,13 +116,37 @@ if(empty($_SESSION['email'])){
             <div class="col-md-12 grid-margin streach-card">
                 <div class="card position-relative">
                     <div class="card-body">
-                        <div class="col-md-12 col-xl-3 ">
-                            <a href="booked.php">Booked</a>
-                            <a href="check-in.php">Check In</a>
-                            <a href="check-out.php">Check Out</a>
-                            <a href="rooms.php">Room Category</a>
-                            <a href="users.php">Users</a>
-                        </div>
+                        <?php
+                        
+                            $sql_total_books = "SELECT COUNT(id) FROM history";
+                            $run = mysqli_query($conn,$sql_total_books);
+
+                            if(mysqli_num_rows($run) > 0){
+                                foreach($run as $row){
+                                    ?>
+                                        <h2>Total Number of Guests: <?php echo $row['COUNT(id)']?></h2>
+                                    <?php
+                                }
+                            }
+                        ?>
+
+                        <?php
+
+                            $sql_total_rooms = "SELECT COUNT(id) FROM room_category";
+                            $run_total_rooms = mysqli_query($conn,$sql_total_rooms);
+
+                            if(mysqli_num_rows($run_total_rooms) > 0){
+                                foreach($run_total_rooms as $row_room){
+                                    ?>
+
+                                        <h2>Total Number of Rooms: <?php echo $row_room['COUNT(id)']?></h2>
+
+                                    <?php
+                                }
+                            }
+
+                        ?>
+                        
                     </div>
                 </div>
             </div>
