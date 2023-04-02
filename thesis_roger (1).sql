@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 21, 2023 at 09:16 AM
+-- Generation Time: Apr 02, 2023 at 09:11 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -31,6 +31,7 @@ CREATE TABLE `booked` (
   `id` int(11) NOT NULL,
   `reference_number` int(50) NOT NULL,
   `room_id` varchar(50) NOT NULL,
+  `room_category_id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `contact_number` varchar(50) NOT NULL,
   `date_in` date NOT NULL,
@@ -39,6 +40,38 @@ CREATE TABLE `booked` (
   `date_created` date NOT NULL,
   `date_updated` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `booked`
+--
+
+INSERT INTO `booked` (`id`, `reference_number`, `room_id`, `room_category_id`, `name`, `contact_number`, `date_in`, `date_out`, `status`, `date_created`, `date_updated`) VALUES
+(3, 8493, 'Room33', 1, 'mathew', '09176059359', '2023-03-27', '2023-03-28', 2, '2023-03-27', '2023-03-27');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `history`
+--
+
+CREATE TABLE `history` (
+  `id` int(11) NOT NULL,
+  `reference_number` int(11) NOT NULL,
+  `room_id` varchar(50) NOT NULL,
+  `room_category_id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `contact_number` int(11) NOT NULL,
+  `date_in` date NOT NULL,
+  `date_out` date NOT NULL,
+  `date_created` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `history`
+--
+
+INSERT INTO `history` (`id`, `reference_number`, `room_id`, `room_category_id`, `name`, `contact_number`, `date_in`, `date_out`, `date_created`) VALUES
+(1, 8493, 'Room33', 1, 'mathew', 2147483647, '2023-03-27', '2023-03-28', '2023-04-03');
 
 -- --------------------------------------------------------
 
@@ -92,7 +125,7 @@ INSERT INTO `status` (`id`, `name`) VALUES
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `username` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `password` varchar(50) NOT NULL,
   `date_created` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -101,8 +134,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `username`, `password`, `date_created`) VALUES
-(1, 'mathew dalisay', 'admin', 'admin', '0000-00-00');
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `date_created`) VALUES
+(1, 'mathew dalisay', 'mathewdalisay@gmail.com', '1234', '0000-00-00'),
+(2, 'mathew dalisay 2', 'admin@gmail.com', 'admin', '0000-00-00'),
+(3, 'melendezdj', 'melendezdj@gmail.com', '1234', '2023-04-03');
 
 --
 -- Indexes for dumped tables
@@ -114,6 +149,12 @@ INSERT INTO `users` (`id`, `name`, `username`, `password`, `date_created`) VALUE
 ALTER TABLE `booked`
   ADD PRIMARY KEY (`id`),
   ADD KEY `status` (`status`);
+
+--
+-- Indexes for table `history`
+--
+ALTER TABLE `history`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `room_category`
@@ -142,7 +183,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `booked`
 --
 ALTER TABLE `booked`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `history`
+--
+ALTER TABLE `history`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `room_category`
@@ -160,7 +207,7 @@ ALTER TABLE `status`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
