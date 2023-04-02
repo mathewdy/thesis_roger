@@ -38,7 +38,7 @@ ob_start();
               <h6 class="font-weight-light">Sign in to continue.</h6>
               <form class="pt-3" action="" method="POST">
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" name="username" id="exampleInputEmail1" placeholder="Username">
+                  <input type="text" class="form-control form-control-lg" name="email" id="exampleInputEmail1" placeholder="Email">
                 </div>
                 <div class="form-group">
                   <input type="password" class="form-control form-control-lg" name="password" id="exampleInputPassword1" placeholder="Password">
@@ -53,11 +53,11 @@ ob_start();
                       Keep me signed in
                     </label>
                   </div>
-                  <a href="#" class="auth-link text-black">Forgot password?</a>
+                  <a href="forgot-password.php" class="auth-link text-black">Forgot password?</a>
                 </div>
-                <div class="text-center mt-4 font-weight-light">
+                <!-- <div class="text-center mt-4 font-weight-light">
                   Don't have an account? <a href="register.html" class="text-primary">Create</a>
-                </div>
+                </div> -->
               </form>
             </div>
           </div>
@@ -86,15 +86,15 @@ ob_start();
 
 <?php
 if(isset($_POST['login'])){
-    $username = $_POST['username'];
+    $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $sql = "SELECT * FROM users WHERE username= '$username' AND password = '$password'";
+    $sql = "SELECT * FROM users WHERE email= '$email' AND password = '$password'";
     $run = mysqli_query($conn,$sql);
 
     if(mysqli_num_rows($run) > 0){
         foreach($run as $row){
-            $_SESSION['username'] = $username;
+            $_SESSION['email'] = $email;
             $_SESSION['password'] = $password;
             $_SESSION['id'] = $row['id'];
             header('Location: home.php');

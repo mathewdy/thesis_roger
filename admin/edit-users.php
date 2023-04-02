@@ -29,8 +29,8 @@ ob_start();
                         <form action="" method="POST">
                         <label for="">Name</label>
                         <input type="text" name="name" value="<?php echo $row['name']?>"required>
-                        <label for="">Username</label>
-                        <input type="text" name="username" value="<?php echo $row['username']?>" required> 
+                        <label for="">Email</label>
+                        <input type="text" name="email" value="<?php echo $row['email']?>" required> 
                         <label for="">Password</label>
                         <input type="password" name="password" required>
                         <input type="submit" name="update" value="Save">
@@ -51,10 +51,10 @@ ob_start();
 
 if(isset($_POST['update'])){
     $name = $_POST['name'];
-    $username = $_POST['username'];
+    $email = $_POST['email'];
     $password = $_POST['password'];
     $id = $_GET['id'];
-    $sql_update = "UPDATE users SET name = '$name' , username='$username' , password= '$password' WHERE id = '$id'";
+    $sql_update = "UPDATE users SET name = '$name' , email='$email' , password= '$password' WHERE id = '$id'";
     $run_update = mysqli_query($conn,$sql_update);
 
     if($run_update){

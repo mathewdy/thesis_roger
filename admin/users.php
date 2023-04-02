@@ -2,7 +2,7 @@
 include('../connection.php');
 ob_start();
 session_start();
-if(empty($_SESSION['username'])){
+if(empty($_SESSION['email'])){
     echo "<script>window.location.href='login.php'</script>";
 }
 
@@ -46,7 +46,7 @@ if(empty($_SESSION['username'])){
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="" alt="profile"/>
+             
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item" href="#">
@@ -143,7 +143,7 @@ if(empty($_SESSION['username'])){
                                                     <tr>
                                                         <td><?php echo $count?></td>
                                                         <td><?php echo $row['name']?></td>
-                                                        <td><?php echo $row['username']?></td>
+                                                        <td><?php echo $row['email']?></td>
                                                         <td><?php echo $row['password']?></td>
                                                         <td>
                                                             <a href="edit-users.php?id=<?php echo $row['id']?>">Edit</a>
@@ -171,7 +171,7 @@ if(empty($_SESSION['username'])){
                                     <input type="text" class="form-control form-control-lg" name="name" id="exampleInputEmail1" placeholder="Name">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" name="username" id="exampleInputEmail1" placeholder="Username">
+                                    <input type="text" class="form-control form-control-lg" name="email" id="exampleInputEmail1" placeholder="Email">
                                 </div>
                                 <div class="form-group">
                                     <input type="password" class="form-control form-control-lg" name="password" id="exampleInputPassword1" placeholder="Password">
@@ -234,11 +234,11 @@ if(isset($_POST['add_user'])){
     $date = date('y-m-d');
 
     $name = $_POST['name'];
-    $username = $_POST['username'];
+    $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $sql_insert = "INSERT INTO users (name,username,password,date_created)
-    VALUES ('$name','$username', '$password', '$date')";
+    $sql_insert = "INSERT INTO users (name,email,password,date_created)
+    VALUES ('$name','$email', '$password', '$date')";
     $run_insert = mysqli_query($conn,$sql_insert);
 
     if($run_insert){

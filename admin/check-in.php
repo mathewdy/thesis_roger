@@ -2,7 +2,7 @@
 include('../connection.php');
 ob_start();
 session_start();
-if(empty($_SESSION['username'])){
+if(empty($_SESSION['email'])){
     echo "<script>window.location.href='login.php'</script>";
 }
 
@@ -47,7 +47,7 @@ if(empty($_SESSION['username'])){
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="" alt="profile"/>
+            <?php echo $_SESSION['email'];?>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item" href="#">
@@ -193,7 +193,7 @@ if(empty($_SESSION['username'])){
                                                                 <td>
                                                                     <form action="" method="POST">
                                                                         <input type="hidden" name="reference_number" value="<?php echo $row['reference_number']?>" >
-                                                                        <input type="submit" name="check_in" value="Check Out">
+                                                                        <input type="submit" name="check_out" value="Check Out">
                                                                     </form>
                                                                     <a href="delete-check-in.php">Delete</a>
                                                                 </td>
@@ -262,13 +262,13 @@ if(empty($_SESSION['username'])){
 if(isset($_POST['check_out'])){
 
     //gagawa ako ng query para auto insert sa history after ng comeplete details
-    $check = 1;
+    $check = 2;
     $reference_number = $_POST['reference_number'];
     $update = "UPDATE booked SET status = '$check' WHERE reference_number = '$reference_number' ";
     $run_update = mysqli_query($conn,$update);
 
     if($run_update){
-        echo "<script>window.location.href='check_out.php' </script>";
+        echo "<script>window.location.href='check-out.php' </script>";
 
     }else{
         echo "error" . $conn->error;

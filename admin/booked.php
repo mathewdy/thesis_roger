@@ -2,7 +2,7 @@
 include('../connection.php');
 ob_start();
 session_start();
-if(empty($_SESSION['username'])){
+if(empty($_SESSION['email'])){
     echo "<script>window.location.href='login.php'</script>";
 }
 
@@ -46,7 +46,7 @@ if(empty($_SESSION['username'])){
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="" alt="profile"/>
+            <?php echo $_SESSION['email'];?>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item" href="#">
@@ -132,7 +132,7 @@ if(empty($_SESSION['username'])){
                                     <tbody>
                                         <?php
 
-                                            $sql = "SELECT * FROM booked";
+                                            $sql = "SELECT * FROM booked WHERE status = '3'";
                                             $run = mysqli_query($conn,$sql);
                                             if(mysqli_num_rows($run) > 0){
                                                 $count = 0;

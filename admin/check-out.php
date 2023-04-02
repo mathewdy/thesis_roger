@@ -2,7 +2,7 @@
 include('../connection.php');
 ob_start();
 session_start();
-if(empty($_SESSION['username'])){
+if(empty($_SESSION['email'])){
     echo "<script>window.location.href='login.php'</script>";
 }
 
@@ -46,7 +46,7 @@ if(empty($_SESSION['username'])){
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="" alt="profile"/>
+            <?php echo $_SESSION['email'];?>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item" href="#">
@@ -279,11 +279,22 @@ if(isset($_POST['check_out'])){
 
 
     if($run_update){
-        //gagawa na ako ng insert sa history
+        //query verification 
+        $sql_check = "SELECT * FROM history WHERE reference_number = '$reference_number' ";
+        $run_check = mysqli_query($conn,$sql_check);
+
+        if(mysqli_num_rows($run_check) > 0){
+          echo "<script>alert('Already added') </script>";
+        }else{
+           //gagawa na ako ng insert sa history
+
         $insert_history_query = "INSERT INTO history (reference_number,room_id,room_category_id,name,contact_number,date_in,date_out,date_created) VALUES('$reference_number', '$room_id', '$room_category_id','$name','$contact_number', '$date_in', '$date_out', '$date') ";
         $run_history = mysqli_query($conn,$insert_history_query);
         echo "<script>window.location.href='check_out.php' </script>";
         
+        }
+
+       
         
     }else{
         echo "error" . $conn->error;
