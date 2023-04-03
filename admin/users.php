@@ -146,7 +146,7 @@ if(empty($_SESSION['email'])){
                                                         <td><?php echo $row['email']?></td>
                                                         <td><?php echo $row['password']?></td>
                                                         <td>
-                                                            <a href="edit-users.php?id=<?php echo $row['id']?>">Edit</a>
+                                                            <a data-id="<?= $row ['id']; ?>" class="users" href="#" data-toggle='modal' data-target='#usersModal'>Edit</a>
                                                             <a href="delete-users.php?id=<?php echo $row['id']?>">Delete</a>
                                                         </td>
                                                     </tr>
@@ -201,6 +201,22 @@ if(empty($_SESSION['email'])){
   </div>
   <!-- container-scroller -->
 
+  <!-- Modal -->
+  <div class="modal fade" id="usersModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+        <div class="modal-header" style="border:none;">
+            <button type="button" class="close bg-white" data-dismiss="modal" aria-label="Close"> 
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+          <div class="content"></div>
+        </div>
+        </div>
+    </div>
+  </div>
+
   <!-- plugins:js -->
   <script src="../src/plugins/template/vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->
@@ -222,6 +238,22 @@ if(empty($_SESSION['email'])){
   <script src="../src/plugins/template/js/dashboard.js"></script>
   <script src="../src/plugins/template/js/Chart.roundedBarCharts.js"></script>
   <!-- End custom js for this page-->
+  <script>
+    $(document).ready(function(){
+        $('.users').click(function(){
+            var users = $(this).data('id');
+            $.ajax({
+                url: 'users_modal.php',
+                type: 'post',
+                data: {users: users},
+                success: function(response){
+                    $('.content').html(response);
+                    $('#usersModal').modal('show');
+                }
+            });
+        });
+    });
+</script>
 </body>
 
 </html>
