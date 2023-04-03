@@ -222,7 +222,7 @@ if(empty($_SESSION['email'])){
   <!-- endinject -->
   <!-- Plugin js for this page -->
   <script src="../src/plugins/template/vendors/chart.js/Chart.min.js"></script>
-  <script src="../../skydash/vendors/datatables.net/jquery.dataTables.js"></script>
+  <script src="../src/plugins/templateskydash/vendors/datatables.net/jquery.dataTables.js"></script>
   <script src="../src/plugins/template/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
   <script src="../src/plugins/template/js/dataTables.select.min.js"></script>
 
