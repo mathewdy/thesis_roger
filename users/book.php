@@ -5,6 +5,7 @@ include('../connection.php');
 ob_start();
 session_start();
 
+
 ?>
 
 <!DOCTYPE html>
@@ -79,8 +80,10 @@ if(isset($_POST['search'])){
 
                 <label for="">Name</label>
                 <input type="text" name="full_name">
+                <br>
                 <label for="">Contact Number</label>
-                <input type="text" name="contact_number">
+                <input type="tel" name="contact_number" size="20" minlength="9" maxlength="13" pattern="[0-9]{10}" placeholder="915XXXXXXX" required>
+                <br>
 
                 <label for="">Image</label>
                 <br>    

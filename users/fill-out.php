@@ -11,7 +11,8 @@ if(isset($_POST['next'])){
     $date = date('y-m-d');
 
     $full_name = $_POST['full_name'];
-    $contact_number = $_POST['contact_number'];
+    $contact_number =  "+63" . $_POST['contact_number'];
+    
 
     $id = $_POST['id'];
 
@@ -28,8 +29,12 @@ if(isset($_POST['next'])){
     
     if($run_insert){
         echo "added";
+        echo $contact_number;
         //pero pakita muna sa kanya yung details ng book nya ulet
         //redirect dapat sya sa book.php
+        //gagawa na lang akong email confirmation
+
+   
     }else{
         echo "error" . $conn->error;
     }
