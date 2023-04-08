@@ -107,6 +107,12 @@ if(empty($_SESSION['email'])){
               <span class="menu-title">Users</span>
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="history.php">
+              <i class="mdi mdi-account-multiple menu-icon"></i>
+              <span class="menu-title">History</span>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- partial -->

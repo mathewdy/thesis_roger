@@ -46,7 +46,7 @@ if(empty($_SESSION['email'])){
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-             
+              <?php echo $_SESSION['email'];?>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item" href="#">
@@ -107,6 +107,12 @@ if(empty($_SESSION['email'])){
               <span class="menu-title">Users</span>
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="history.php">
+              <i class="mdi mdi-account-multiple menu-icon"></i>
+              <span class="menu-title">History</span>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- partial -->
@@ -146,7 +152,7 @@ if(empty($_SESSION['email'])){
                                                         <td><?php echo $row['email']?></td>
                                                         <td><?php echo $row['password']?></td>
                                                         <td>
-                                                            <a data-id="<?= $row ['id']; ?>" class="users" href="#" data-toggle='modal' data-target='#usersModal'>Edit</a>
+                                                            <a href="edit-users.php?id=<?php echo $row['id']?>">Edit</a>
                                                             <a href="delete-users.php?id=<?php echo $row['id']?>">Delete</a>
                                                         </td>
                                                     </tr>
@@ -201,28 +207,12 @@ if(empty($_SESSION['email'])){
   </div>
   <!-- container-scroller -->
 
-  <!-- Modal -->
-  <div class="modal fade" id="usersModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable">
-        <div class="modal-content">
-        <div class="modal-header" style="border:none;">
-            <button type="button" class="close bg-white" data-dismiss="modal" aria-label="Close"> 
-              <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-          <div class="content"></div>
-        </div>
-        </div>
-    </div>
-  </div>
-
   <!-- plugins:js -->
   <script src="../src/plugins/template/vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->
   <!-- Plugin js for this page -->
   <script src="../src/plugins/template/vendors/chart.js/Chart.min.js"></script>
-  <script src="../src/plugins/templateskydash/vendors/datatables.net/jquery.dataTables.js"></script>
+  <script src="../../skydash/vendors/datatables.net/jquery.dataTables.js"></script>
   <script src="../src/plugins/template/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
   <script src="../src/plugins/template/js/dataTables.select.min.js"></script>
 
@@ -238,22 +228,6 @@ if(empty($_SESSION['email'])){
   <script src="../src/plugins/template/js/dashboard.js"></script>
   <script src="../src/plugins/template/js/Chart.roundedBarCharts.js"></script>
   <!-- End custom js for this page-->
-  <script>
-    $(document).ready(function(){
-        $('.users').click(function(){
-            var users = $(this).data('id');
-            $.ajax({
-                url: 'users_modal.php',
-                type: 'post',
-                data: {users: users},
-                success: function(response){
-                    $('.content').html(response);
-                    $('#usersModal').modal('show');
-                }
-            });
-        });
-    });
-</script>
 </body>
 
 </html>
