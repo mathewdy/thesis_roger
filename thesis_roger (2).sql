@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2023 at 09:11 PM
+-- Generation Time: Apr 09, 2023 at 10:50 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -34,6 +34,7 @@ CREATE TABLE `booked` (
   `room_category_id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `contact_number` varchar(50) NOT NULL,
+  `email` varchar(150) NOT NULL,
   `date_in` date NOT NULL,
   `date_out` date NOT NULL,
   `status` int(11) NOT NULL,
@@ -45,8 +46,10 @@ CREATE TABLE `booked` (
 -- Dumping data for table `booked`
 --
 
-INSERT INTO `booked` (`id`, `reference_number`, `room_id`, `room_category_id`, `name`, `contact_number`, `date_in`, `date_out`, `status`, `date_created`, `date_updated`) VALUES
-(3, 8493, 'Room33', 1, 'mathew', '09176059359', '2023-03-27', '2023-03-28', 2, '2023-03-27', '2023-03-27');
+INSERT INTO `booked` (`id`, `reference_number`, `room_id`, `room_category_id`, `name`, `contact_number`, `email`, `date_in`, `date_out`, `status`, `date_created`, `date_updated`) VALUES
+(3, 8493, 'Room33', 1, 'mathew', '09176059359', '', '2023-03-27', '2023-03-28', 2, '2023-03-27', '2023-03-27'),
+(8, 7627, 'Room88', 1, 'melendez dj', '+639156915704', '', '2023-04-30', '2023-05-03', 3, '2023-04-09', '2023-04-09'),
+(10, 1256, 'Room69', 1, 'mathew melendez', '+639156915704', 'mathewdalisay@gmail.com', '2023-04-09', '2023-04-15', 3, '2023-04-09', '2023-04-09');
 
 -- --------------------------------------------------------
 
@@ -65,13 +68,6 @@ CREATE TABLE `history` (
   `date_out` date NOT NULL,
   `date_created` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `history`
---
-
-INSERT INTO `history` (`id`, `reference_number`, `room_id`, `room_category_id`, `name`, `contact_number`, `date_in`, `date_out`, `date_created`) VALUES
-(1, 8493, 'Room33', 1, 'mathew', 2147483647, '2023-03-27', '2023-03-28', '2023-04-03');
 
 -- --------------------------------------------------------
 
@@ -183,7 +179,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `booked`
 --
 ALTER TABLE `booked`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `history`
