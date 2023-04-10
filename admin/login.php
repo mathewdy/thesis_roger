@@ -6,6 +6,7 @@ ob_start();
 
 
 ?>
+<!-- pakisabi sa mama ko iniwan nya ako sa mall nung bata pa ako tapos ngayon meron na akong abandonment issue -->
 <!DOCTYPE html>
 <html lang="en">
 
