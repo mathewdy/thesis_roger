@@ -78,15 +78,7 @@ if(isset($_POST['search'])){
                 <!---modal--->
                 <form action="fill-out.php" method="POST">
 
-                <label for="">Name</label>
-                <input type="text" name="full_name">
-                <br>
-                <label for="">Contact Number</label>
-                <input type="tel" name="contact_number" size="20" minlength="9" maxlength="13" pattern="[0-9]{10}" placeholder="915XXXXXXX" required>
-                <br>
-                <label for="">Email Address</label>
-                <input type="email" name="email" >
-
+               
                 <label for="">Image</label>
                 <br>    
                 <img src="<?php echo "../admin/rooms/" . $row['image']?>" alt="room" width="100px" height="100px">

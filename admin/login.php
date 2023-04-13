@@ -49,10 +49,10 @@ ob_start();
                 </div>
                 <div class="my-2 d-flex justify-content-between align-items-center">
                   <div class="form-check">
-                    <label class="form-check-label text-muted">
+                    <!-- <label class="form-check-label text-muted">
                       <input type="checkbox" class="form-check-input">
                       Keep me signed in
-                    </label>
+                    </label> -->
                   </div>
                   <a href="forgot-password.php" class="auth-link text-black">Forgot password?</a>
                 </div>

@@ -132,6 +132,7 @@ if(empty($_SESSION['email'])){
                                             <th scope="col">Room ID</th>
                                             <th scope="col">Name</th>
                                             <th scope="col">Contact Number</th>
+                                            <th scope="col">Date Created</th>
                                             <th>Modify</th>
                                         </tr>
                                     </thead>
@@ -152,6 +153,7 @@ if(empty($_SESSION['email'])){
                                                             <td><?php echo $row['room_id']?></td>
                                                             <td><?php echo $row['name']?></td>
                                                             <td><?php echo $row['contact_number']?></td>
+                                                            <td><?php echo $row['date_created']?></td>
                                                             <td>
                                                                 <!---kapag pinindot yung UPDATE-->
                                                                 <!---it's either profile OR another button to checked in--->

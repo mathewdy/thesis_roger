@@ -296,7 +296,7 @@ if(isset($_POST['check_out'])){
 
         $insert_history_query = "INSERT INTO history (reference_number,room_id,room_category_id,name,contact_number,date_in,date_out,date_created) VALUES('$reference_number', '$room_id', '$room_category_id','$name','$contact_number', '$date_in', '$date_out', '$date') ";
         $run_history = mysqli_query($conn,$insert_history_query);
-        echo "<script>window.location.href='check_out.php' </script>";
+        echo "<script>window.location.href='history.php' </script>";
         
         }
 

@@ -58,16 +58,16 @@ function sendMail($email,$check_in,$check_out,$full_name){
 $error = NULL;
 
 
+
+
+
 if(isset($_POST['next'])){
 
-    //year month date
-    date_default_timezone_set("Asia/Manila");
-    $time = date("h:i:s", time());
-    $date = date('y-m-d');
+  
 
-    $full_name = $_POST['full_name'];
-    $contact_number =  "+63" . $_POST['contact_number'];
-    $email = $_POST['email'];
+
+
+
     
 
     $id = $_POST['id'];
@@ -76,6 +76,75 @@ if(isset($_POST['next'])){
     $check_out = $_POST['check_out'];   
     $category = $_POST['category'];
     $price = $_POST['price'];
+
+
+
+
+
+
+    
+}
+ob_end_flush();
+
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" method="POST">
+    <label for="">Name</label>
+    <input type="text" name="full_name">
+    <br>
+    <label for="">Contact Number</label>
+    <input type="tel" name="contact_number" size="20" minlength="9" maxlength="13" pattern="[0-9]{10}" placeholder="915XXXXXXX" required>
+    <br>
+    <label for="">Email Address</label>
+    <input type="email" name="email" >
+   
+    <br>
+   
+    <input type="submit" name="add_book" value="Book">
+
+
+    <input type="hidden" name="id" value="<?php echo $id?>">
+    <input type="hidden" name="check_in" value="<?php echo $check_in?>">
+    <input type="hidden" name="check_out" value="<?php echo $check_out?>">
+    <input type="hidden" name="category" value="<?php echo $category?>">
+    <input type="hidden" name="price" value="<?php echo $price?>">
+    </form>
+</body>
+</html>
+
+<?php
+
+if(isset($_POST['add_book'])){
+    //year month date
+    date_default_timezone_set("Asia/Manila");
+    $time = date("h:i:s", time());
+    $date = date('y-m-d');
+
+    $full_name = $_POST['full_name'];
+    $contact_number =  "+63" . $_POST['contact_number'];
+    $email = $_POST['email'];
+
+    
+    $id = $_POST['id'];
+
+    $check_in = $_POST['check_in'];
+    $check_out = $_POST['check_out'];   
+    $category = $_POST['category'];
+    $price = $_POST['price'];
+
+
+
+
 
     $reference_number = rand('0000', '9999');
     $room_id = "Room" . rand('00','99');
@@ -96,8 +165,6 @@ if(isset($_POST['next'])){
         echo "error" . $conn->error;
     }
 }
-ob_end_flush();
 
 
 ?>
-
