@@ -29,8 +29,6 @@ session_start();
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
-  <link rel="stylesheet" href="../src/plugins/template/vendors/mdi/css/materialdesignicons.min.css">
-
   <link rel="shortcut icon" href="../src/plugins/template/images/favicon.png" />
 </head>
 
@@ -63,7 +61,6 @@ session_start();
         </div>
         </nav>
         <div class="main-panel w-100">
-            <div class="container-scroller">
         <div class="container-fluid page-body-wrapper full-page-wrapper">
         <div class="content-wrapper d-flex align-items-center auth px-0">
             <div class="row w-100 mx-0">
@@ -81,7 +78,7 @@ session_start();
                         <input class="form-control check_out" type="text" name="check_out" id="check_out">
                     </div>
                     <div class="mt-3">
-                        <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn search" type="button" data-toggle="offcanvas">Search</button>
+                        <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn search" type="button">Search</button>
                         <!-- <input type="submit" name="search" data-toggle="modal" data-target="#staticBackdrop" class="" value="Search"> -->
                     </div>
                     <div class="my-2 d-flex justify-content-between align-items-center">
@@ -93,37 +90,15 @@ session_start();
                 <script src="../src/js/datepicker.init.js"></script>
                 </div>
             </div>
-            <div class="col-lg-12 mt-2" style="z-index: 1; background: white;">
+            <div class="col-lg-12">
                 <div class="rooms">
 
                 </div>
             </div>
-            <div class="modal fade" id="fillOut" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog" style="z-index: 2;">
-                    <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Fill up form</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="fill-form"></div>
-                    
-                    </div>
-                </div>
-                </div>
             </div>
-        </div>
         <!-- content-wrapper ends -->
         </div>
         <!-- page-body-wrapper ends -->
-    </div>
-        <footer class="footer">
-            <div class="d-sm-flex justify-content-end align-items-end justify-content-sm-between">
-                <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021. All rights reserved.</span>
-            </div>
-        </footer>
     </div>
 </div>
 <!-- container-scroller -->
@@ -141,18 +116,18 @@ session_start();
 <!-- endinject -->
 <script>
     $(document).ready(function(){
-        $('.search').click(function(){
-            var checkIn = $('.check_in').val();
-            var checkOut = $('.check_out').val();
-            $.ajax({
-                url: 'rooms.php',
-                type: 'get',
-                data: {c_in: checkIn, c_out: checkOut},
-                success: function(response){
-                    $('.rooms').html(response);
-                }
-            });
-        });
+        // $('.search').click(function(){
+        //     var checkIn = $('.check_in').val();
+        //     var checkOut = $('.check_out').val();
+        //     $.ajax({
+        //         url: 'rooms.php',
+        //         type: 'get',
+        //         data: {c_in: checkIn, c_out: checkOut},
+        //         success: function(response){
+        //             $('.rooms').html(response);
+        //         }
+        //     });
+        // });
     });
 </script>
 </body>

@@ -40,7 +40,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="about.php">
+            <a class="nav-link fw-800" href="about.php">
                 About
             </a>
           </li>
@@ -53,10 +53,11 @@
                 <div class="row flex-grow">
                     <div class="col-lg-12">
                         <div class="row">
-                            <div class="col-lg-12 text-white" style="z-index: 3;">
-                                <h2 class="text-start">Finding a place to chill?</h4>
-                                <h3 class="text-start">Book Now!</h3>
-                                <a href="admin/login.php" class="btn btn-sm btn-outline-warning">Sign In</a>
+                            <div class="col-lg-12 text-white justify-content-center" style="z-index: 3;">
+                                <h2 class="text-center h1 ">Finding a place to chill?</h2>
+                                <h3 class="text-center h3 mb-5">We got you!</h3>
+                                <a href="users/book.php" class="btn btn-lg btn-success h3">Book Now!</a>
+                                <!-- <a href="admin/login.php" class="btn btn-lg btn-warning ">Sign In</a> -->
                             </div>
                         </div>
                     </div>
