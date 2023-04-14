@@ -109,7 +109,7 @@ if(empty($_SESSION['email'])){
           </li>
           <li class="nav-item">
             <a class="nav-link" href="history.php">
-              <i class="mdi mdi-account-multiple menu-icon"></i>
+              <i class="mdi mdi-history menu-icon"></i>
               <span class="menu-title">History</span>
             </a>
           </li>
@@ -124,7 +124,7 @@ if(empty($_SESSION['email'])){
                     <div class="card-body">
                         <div class="col-md-12">
                             <div class="table-responsive">
-                                <table class="table table-striped">
+                                <table id="data" class="display expandable-table table-striped" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th>#</th>

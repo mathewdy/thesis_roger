@@ -109,7 +109,7 @@ if(empty($_SESSION['email'])){
           </li>
           <li class="nav-item">
             <a class="nav-link" href="history.php">
-              <i class="mdi mdi-account-multiple menu-icon"></i>
+              <i class="mdi mdi-history menu-icon"></i>
               <span class="menu-title">History</span>
             </a>
           </li>
@@ -119,44 +119,64 @@ if(empty($_SESSION['email'])){
       <div class="main-panel">
         <div class="content-wrapper">
           <div class="row">
-            <div class="col-md-12 grid-margin streach-card">
-                <div class="card position-relative">
-                    <div class="card-body">
-                        <?php
-                        
+            <div class="col-md-4 grid-margin streach-card">
+              <div class="card bg-info text-white">
+                  <div class="card-body">
+                    <div class="media d-flex align-items-center">
+                      <div class="media-body">
+                        <h4 class="card-title text-white">Guests</h4>
+
+                          <?php
+                            
                             $sql_total_books = "SELECT COUNT(id) FROM history";
                             $run = mysqli_query($conn,$sql_total_books);
 
                             if(mysqli_num_rows($run) > 0){
                                 foreach($run as $row){
                                     ?>
-                                        <h2>Total Number of Guests: <?php echo $row['COUNT(id)']?></h2>
+                                        <h2 class="p card-text"> <?php echo $row['COUNT(id)']?></h2>
                                     <?php
                                 }
                             }
                         ?>
+                      </div>
+                      <i class="mdi mdi-emoticon-happy icon-md text-white d-flex align-self-start justify-content-start mr-3" style="rotate: 30deg; font-size: 4em; opacity: 50%;"></i>
 
-                        <?php
-
-                            $sql_total_rooms = "SELECT COUNT(id) FROM room_category";
-                            $run_total_rooms = mysqli_query($conn,$sql_total_rooms);
-
-                            if(mysqli_num_rows($run_total_rooms) > 0){
-                                foreach($run_total_rooms as $row_room){
-                                    ?>
-
-                                        <h2>Total Number of Rooms: <?php echo $row_room['COUNT(id)']?></h2>
-
-                                    <?php
-                                }
-                            }
-
-                        ?>
-                        
                     </div>
+                  </div>
                 </div>
             </div>
-          </div>
+            <div class="col-md-4 grid-margin stretch-card">
+              <div class="card bg-success text-white">
+                  <div class="card-body">
+                    <div class="media d-flex align-items-center">
+                      <div class="media-body">
+                        <h4 class="card-title text-white">Rooms</h4>
+                      <?php
+
+                        $sql_total_rooms = "SELECT COUNT(id) FROM room_category";
+                        $run_total_rooms = mysqli_query($conn,$sql_total_rooms);
+
+                        if(mysqli_num_rows($run_total_rooms) > 0){
+                            foreach($run_total_rooms as $row_room){
+                                ?>
+
+                                    <h2 class="p card-text"><?php echo $row_room['COUNT(id)']?></h2>
+
+                                <?php
+                            }
+                        }
+
+                        ?>
+                      </div>
+                      <i class="mdi mdi-houzz icon-md text-white d-flex align-self-start justify-content-startt mr-3" style=" font-size: 4em; opacity: 50%;"></i>
+
+                    </div>
+                  </div>
+                </div>
+            </div>
+            </div>
+          <!-- </div> -->
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
