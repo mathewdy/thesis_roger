@@ -1,13 +1,19 @@
 <?php
 include('../connection.php');
 
-//fetch ko muna yung mga rooms
-    //kunin ko muna yung difference ng days
-    $check_in = $_GET['c_in'];
-    $check_out = $_GET['c_out'];
+$check_in = $_GET['c_in'];
+$check_out = $_GET['c_out'];
 
+if(empty($check_in) && empty($check_out)){
+    echo "error bawal mag book";
+}else{
+//fetch ko muna yung mga rooms
+//kunin ko muna yung difference ng days
+    
     $query_room = "SELECT * FROM room_category";
     $run_room = mysqli_query($conn,$query_room);
+
+
 ?>
         <div class="container p-5">
             <h3 class="text-gray-500">Rooms</h3>
@@ -57,6 +63,10 @@ include('../connection.php');
 
     
 </div>
+
+<?php
+}
+?>
 
 <script>
     $(document).ready(function(){

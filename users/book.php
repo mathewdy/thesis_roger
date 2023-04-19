@@ -50,7 +50,7 @@ session_start();
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="room.php">
+                <a class="nav-link" href="showcase.php">
                     Rooms
                 </a>
             </li>
@@ -74,14 +74,14 @@ session_start();
                 <form class="pt-3" action="" method="POST" autocomplete="off">
                     <div class="form-group">
                         <label for="">Check In</label>
-                        <input class="form-control check_in" type="text" name="check_in" id="check_in">
+                        <input class="form-control check_in" type="text" name="check_in" id="check_in" readonly required>
                     </div>
                     <div class="form-group">
                         <label for="">Check Out</label>
-                        <input class="form-control check_out" type="text" name="check_out" id="check_out">
+                        <input class="form-control check_out" type="text" name="check_out" id="check_out" readonly required>
                     </div>
                     <div class="mt-3">
-                        <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn search" type="button" data-toggle="offcanvas">Search</button>
+                        <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn search" type="button" data-toggle="offcanvas" >Search</button>
                         <!-- <input type="submit" name="search" data-toggle="modal" data-target="#staticBackdrop" class="" value="Search"> -->
                     </div>
                     <div class="my-2 d-flex justify-content-between align-items-center">
@@ -155,6 +155,8 @@ session_start();
         });
     });
 </script>
+
+
 </body>
 
 </html>
