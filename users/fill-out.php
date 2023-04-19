@@ -8,9 +8,9 @@ include "../connection.php";
     $price = $_POST['price'];
 ?>
 
-    <form action="process.php" method="POST">
+    <form action="process.php" method="POST"  name="fill_out">
     <label for="">Name</label>
-    <input type="text" class="form-control" name="full_name">
+    <input type="text" class="form-control" name="full_name" pattern="[a-zA-Z\s]+" title="Use letters only" minlength="9" maxlength="34">
     <br>
     <label for="">Contact Number</label>
     <input type="tel" name="contact_number" class="form-control" size="20" minlength="9" maxlength="13" pattern="[0-9]{10}" placeholder="915XXXXXXX" required>
@@ -33,8 +33,11 @@ include "../connection.php";
         <input type="submit" class="btn btn-primary" name="add_book" value="Book">
     </div>
     </form>
+
+
+
 <?php
 
 
-
 ?>
+
