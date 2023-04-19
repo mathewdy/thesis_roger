@@ -124,7 +124,7 @@ if(empty($_SESSION['email'])){
                   <div class="card-body">
                     <div class="media d-flex align-items-center">
                       <div class="media-body">
-                        <h4 class="card-title text-white">Guests</h4>
+                        <h4 class="card-title text-white">Total Guests Booked:</h4>
 
                           <?php
                             
@@ -151,7 +151,7 @@ if(empty($_SESSION['email'])){
                   <div class="card-body">
                     <div class="media d-flex align-items-center">
                       <div class="media-body">
-                        <h4 class="card-title text-white">Rooms</h4>
+                        <h4 class="card-title text-white">Rooms:</h4>
                       <?php
 
                         $sql_total_rooms = "SELECT COUNT(id) FROM room_category";

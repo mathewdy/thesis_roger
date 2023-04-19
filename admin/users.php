@@ -174,13 +174,13 @@ if(empty($_SESSION['email'])){
                         <div class="col-md-12">
                             <form class="pt-3" action="" method="POST">
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" name="name" id="exampleInputEmail1" placeholder="Name">
+                                    <input type="text" class="form-control form-control-lg" name="name" id="exampleInputEmail1" placeholder="Name" maxlength="13">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" name="email" id="exampleInputEmail1" placeholder="Email">
+                                    <input type="text" class="form-control form-control-lg" name="email" id="exampleInputEmail1" placeholder="Email" maxlength="13">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control form-control-lg" name="password" id="exampleInputPassword1" placeholder="Password">
+                                    <input type="password" class="form-control form-control-lg" name="password" id="exampleInputPassword1" placeholder="Password" maxlength="13">
                                 </div>
                                 <div class="mt-3">
                                     <input type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" name="add_user" value="SAVE">

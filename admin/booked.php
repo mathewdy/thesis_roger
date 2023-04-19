@@ -215,6 +215,11 @@ if(empty($_SESSION['email'])){
   <script src="../src/plugins/template/js/dashboard.js"></script>
   <script src="../src/plugins/template/js/Chart.roundedBarCharts.js"></script>
   <!-- End custom js for this page-->
+  <script>
+     $(document).ready(function () {
+      $('#data').DataTable();
+    });
+  </script>
 </body>
 
 </html>

@@ -6,7 +6,7 @@ ob_start();
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
-function sendMail($email,$check_in,$check_out,$full_name){
+function sendMail($email,$check_in,$check_out,$full_name,$price){
     require ("PHPMailer.php");
     require("SMTP.php");
     require("Exception.php");
@@ -19,13 +19,13 @@ function sendMail($email,$check_in,$check_out,$full_name){
         $mail->isSMTP();                                            //Send using SMTP
         $mail->Host       = 'smtp.hostinger.com';                     //Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-        $mail->Username   = 'dilgccc-report@dilg-reportsystem.online';                     //SMTP username
+        $mail->Username   = 'reservation@hotel-deluna-reservation.online';                     //SMTP username
         $mail->Password   = 'mathewPOGI!@#123';                               //SMTP password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
         $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
     
         //Recipients
-        $mail->setFrom('dilgccc-report@dilg-reportsystem.online', 'HBMS');
+        $mail->setFrom('reservation@hotel-deluna-reservation.online', 'HBMS');
         $mail->addAddress($email);     //Add a recipient
     
         //Content
@@ -40,6 +40,7 @@ function sendMail($email,$check_in,$check_out,$full_name){
         Check Out: $check_out
         <br>
         Amout to pay: $price
+        <br>
 
         <strong>Note: If you didn't pay 30 minutes ahead of time , your reservation will be disregarded </strong>
 
@@ -82,13 +83,17 @@ if(isset($_POST['add_book'])){
     $reference_number = rand('0000', '9999');
     $room_id = "Room" . rand('00','99');
 
-    $sql_insert = "INSERT INTO booked (reference_number,room_id,room_category_id,name,contact_number,email,date_in,date_out,status,date_created,date_updated) VALUES ('$reference_number','$room_id','$id','$full_name', '$contact_number','$email', '$check_in','$check_out', '3', '$date' , '$date')";
-    $run_insert = mysqli_query($conn,$sql_insert);
+    $sql_insert = "INSERT INTO booked (reference_number,room_id,room_category_id,name,contact_number,email,price,date_in,date_out,status,date_created,date_updated) VALUES ('$reference_number','$room_id','$id','$full_name', '$contact_number','$email','$price', '$check_in','$check_out', '3', '$date' , '$date')";
+    $run_insert = mysqli_query($conn,$sql_insert) ;
+
     
     if($run_insert){
         echo "<script>alert('Thank you for booking')</script>";
-        echo "<script>window.location.href='book.php'</script>";
-        sendMail($full_name,$check_in,$check_out,$email,$price);
+        echo "<script>window.location.href='book.php' </script>";
+        sendMail($email,$check_in,$check_out,$full_name,$price);
+        
+       
+     
         //pero pakita muna sa kanya yung details ng book nya ulet
         //redirect dapat sya sa book.php
         //gagawa na lang akong email confirmation

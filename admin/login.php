@@ -39,10 +39,10 @@ ob_start();
               <h6 class="font-weight-light">Sign in to continue.</h6>
               <form class="pt-3" action="" method="POST">
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" name="email" id="exampleInputEmail1" placeholder="Email">
+                  <input type="text" class="form-control form-control-lg" name="email" id="exampleInputEmail1" placeholder="Email" maxlength="40">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" name="password" id="exampleInputPassword1" placeholder="Password">
+                  <input type="password" class="form-control form-control-lg" name="password" id="exampleInputPassword1" placeholder="Password" maxlength="20">
                 </div>
                 <div class="mt-3">
                     <input type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" name="login" value="SIGN IN">
@@ -54,7 +54,7 @@ ob_start();
                       Keep me signed in
                     </label> -->
                   </div>
-                  <a href="forgot-password.php" class="auth-link text-black">Forgot password?</a>
+                  <a href="forgot-password.php" class="auth-link text-black text-center w-100">Forgot password?</a>
                 </div>
                 <!-- <div class="text-center mt-4 font-weight-light">
                   Don't have an account? <a href="register.html" class="text-primary">Create</a>

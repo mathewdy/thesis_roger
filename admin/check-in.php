@@ -125,35 +125,11 @@ if(empty($_SESSION['email'])){
                     <div class="card-body">
                         <div class="row justify-content-end">
                             <div class="col-lg-6 mb-3">
-                                <form action="" method="POST">
-                                    <span class="d-flex">
-
-                                        <select class="form-control form-control-sm" name="room" id="">
-
-                                            <?php
-
-                                            $sql_filter = "SELECT * FROM room_category";
-                                            $run_filter = mysqli_query($conn,$sql_filter);
-
-                                            if(mysqli_num_rows($run_filter) > 0){
-                                                foreach($run_filter as $row_filter){
-                                                    ?>
-                                                        <!---gagawa ako filter--->
-                                                    
-                                                            <option value="<?php echo $row_filter['id']?>"><?php echo ucfirst($row_filter['category']) . " " . "Room"?></option>
-                                                    <?php
-                                                }
-                                            }
-
-                                            ?>
-                                        </select>
-                                        <button type="submit" class="btn btn-outline-primary ml-2 btn-rounded btn-icon" name="filter"><i class="mdi mdi-filter-variant"></i></button>
-                                    </span>
-                                </form>
+                                
                             </div>
                             <div class="col-lg-12">
                                 <div class="table-responsive">
-                                    <table class="table table-striped">
+                                    <table id="data" class="display expandable-table" style="width:100%">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -191,7 +167,7 @@ if(empty($_SESSION['email'])){
                                                                             echo "Deluxe Room";
                                                                         }elseif($row['room_category_id'] == '3'){
                                                                             echo "Single Room";
-                                                                        }else{
+                                                                        }elseif($row['room_category_id'] == '4'){
                                                                             echo "Twin Room";
                                                                         }
                                                                     ?>
@@ -260,6 +236,11 @@ if(empty($_SESSION['email'])){
   <script src="../src/plugins/template/js/dashboard.js"></script>
   <script src="../src/plugins/template/js/Chart.roundedBarCharts.js"></script>
   <!-- End custom js for this page-->
+  <script>
+     $(document).ready(function () {
+      $('#data').DataTable();
+    });
+  </script>
 </body>
 
 </html>
@@ -286,7 +267,7 @@ if(isset($_POST['filter'])){
     echo $filter = $_POST['room'];
 
     ?>
-    <table class="table">
+    <table id="data" class="display expandable-table" style="width:100%">
     <!---fetch data------>
 
         <thead>

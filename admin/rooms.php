@@ -177,7 +177,7 @@ if(empty($_SESSION['email'])){
                         <div class="col-md-12">
                             <form class="pt-3" action="" method="POST">
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-sm" name="category" id="exampleInputEmail1" placeholder="Category">
+                                    <input type="text" class="form-control form-control-sm" name="category" id="exampleInputEmail1" placeholder="Category" maxlength="13">
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-sm" name="price" id="exampleInputEmail1" placeholder="Price">
