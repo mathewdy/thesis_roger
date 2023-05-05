@@ -10,13 +10,13 @@ include "../connection.php";
 
     <form action="process.php" method="POST"  name="fill_out">
     <label for="">Name</label>
-    <input type="text" class="form-control" name="full_name" pattern="[a-zA-Z\s]+" title="Use letters only" minlength="9" maxlength="34">
+    <input type="text" class="form-control" name="full_name" pattern="[a-zA-Z\s]+" title="Use letters only" minlength="9" maxlength="34" required>
     <br>
     <label for="">Contact Number</label>
-    <input type="tel" name="contact_number" class="form-control" size="20" minlength="9" maxlength="13" pattern="[0-9]{10}" placeholder="915XXXXXXX" required>
+    <input type="tel" name="contact_number" class="form-control" size="20" minlength="9" maxlength="13" pattern="[0-9]{10}" placeholder="915XXXXXXX" title="Numbers only" required>
     <br>
     <label for="">Email Address</label>
-    <input type="email" class="form-control" name="email" >
+    <input type="email" class="form-control" name="email"  required>
    
     <br>
    
