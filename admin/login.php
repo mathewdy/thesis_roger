@@ -3,7 +3,24 @@
 include('../connection.php');
 session_start();
 ob_start();
+if(isset($_POST['login'])){
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+  $err = '';
+  $sql = "SELECT * FROM users WHERE email= '$email' AND password = '$password'";
+  $run = mysqli_query($conn,$sql);
 
+  if(mysqli_num_rows($run) > 0){
+      foreach($run as $row){
+          $_SESSION['email'] = $email;
+          $_SESSION['password'] = $password;
+          $_SESSION['id'] = $row['id'];
+          header('Location: home.php');
+      }
+  }else{
+    $err = 'User not found!';
+  }
+}
 
 ?>
 <!-- pakisabi sa mama ko iniwan nya ako sa mall nung bata pa ako tapos ngayon meron na akong abandonment issue -->
@@ -38,6 +55,18 @@ ob_start();
               <h4>Hello! let's get started</h4>
               <h6 class="font-weight-light">Sign in to continue.</h6>
               <form class="pt-3" action="" method="POST">
+                <?php 
+                if(isset($err) && $err != ''){
+                  ?>
+                  <div class="alert alert-danger" role="alert">
+                    <?= $err; ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <?php
+                }
+                ?>
                 <div class="form-group">
                   <input type="text" class="form-control form-control-lg" name="email" id="exampleInputEmail1" placeholder="Email" maxlength="40">
                 </div>
@@ -86,24 +115,7 @@ ob_start();
 </html>
 
 <?php
-if(isset($_POST['login'])){
-    $email = $_POST['email'];
-    $password = $_POST['password'];
 
-    $sql = "SELECT * FROM users WHERE email= '$email' AND password = '$password'";
-    $run = mysqli_query($conn,$sql);
-
-    if(mysqli_num_rows($run) > 0){
-        foreach($run as $row){
-            $_SESSION['email'] = $email;
-            $_SESSION['password'] = $password;
-            $_SESSION['id'] = $row['id'];
-            header('Location: home.php');
-        }
-    }else{
-        echo "user not found";
-    }
-}
 
 
 ob_end_flush();

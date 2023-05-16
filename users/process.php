@@ -3,57 +3,57 @@ include('../connection.php');
 session_start();
 ob_start();
 
-// use PHPMailer\PHPMailer\PHPMailer;
-// use PHPMailer\PHPMailer\SMTP;
-// use PHPMailer\PHPMailer\Exception;
-// function sendMail($email,$check_in,$check_out,$full_name,$price){
-//     require ("PHPMailer.php");
-//     require("SMTP.php");
-//     require("Exception.php");
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+function sendMail($email,$check_in,$check_out,$full_name,$price){
+    require ("PHPMailer.php");
+    require("SMTP.php");
+    require("Exception.php");
 
-//     $mail = new PHPMailer(true);
+    $mail = new PHPMailer(true);
 
-//     try {
-//         //Server settings
+    try {
+        //Server settings
        
-//         $mail->isSMTP();                                            //Send using SMTP
-//         $mail->Host       = 'smtp.hostinger.com';                     //Set the SMTP server to send through
-//         $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-//         $mail->Username   = 'reservation@hotel-deluna-reservation.online';                     //SMTP username
-//         $mail->Password   = 'mathewPOGI!@#123';                               //SMTP password
-//         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-//         $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+        $mail->isSMTP();                                            //Send using SMTP
+        $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+        $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+        $mail->Username   = 'jijieazy13@gmail.com';                     //SMTP username
+        $mail->Password   = 'kxaeexkrxhyhypat';                               //SMTP password
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+        $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
     
-//         //Recipients
-//         $mail->setFrom('reservation@hotel-deluna-reservation.online', 'HBMS');
-//         $mail->addAddress($email);     //Add a recipient
+        //Recipients
+        $mail->setFrom('reservation@hotel-deluna-reservation.online', 'HBMS');
+        $mail->addAddress($email);     //Add a recipient
     
-//         //Content
-//         $mail->isHTML(true);                                  //Set email format to HTML
-//         $mail->Subject = 'Confirmation Booking';
-//         $mail->Body    = "<span style=font-size:18px;letter-spacing:0.5px;color:black;>Good day <b></b>!</span><br><span style=font-size:15px;letter-spacing:0.5px;color:black;>
-//         <h3>Good day Mr / Ms : </h3>
-//         <p>$full_name</p>
-//         <br>
-//         Check In: $check_in
-//         <br>
-//         Check Out: $check_out
-//         <br>
-//         Amout to pay: $price
-//         <br>
+        //Content
+        $mail->isHTML(true);                                  //Set email format to HTML
+        $mail->Subject = 'Confirmation Booking';
+        $mail->Body    = "<span style=font-size:18px;letter-spacing:0.5px;color:black;>Good day <b></b>!</span><br><span style=font-size:15px;letter-spacing:0.5px;color:black;>
+        <h3>Good day Mr / Ms : </h3>
+        <p>$full_name</p>
+        <br>
+        Check In: $check_in
+        <br>
+        Check Out: $check_out
+        <br>
+        Amout to pay: $price
+        <br>
 
-//         <strong>Note: If you didn't pay 30 minutes ahead of time , your reservation will be disregarded </strong>
+        <strong>Note: If you didn't pay 30 minutes ahead of time , your reservation will be disregarded </strong>
 
-//         </span>";
+        </span>";
 
 
-//         $mail->send();
-//         return true;
-//     } catch (Exception $e) {
-//         return false;
-//     }
+        $mail->send();
+        return true;
+    } catch (Exception $e) {
+        return false;
+    }
     
-// }
+}
 
 
 $error = NULL;

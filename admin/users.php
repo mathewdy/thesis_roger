@@ -125,7 +125,7 @@ if(empty($_SESSION['email'])){
                         <div class="col-md-12">
                             <!--data table din to-->
                             <div class="table-responsive">
-                                <table class="table table-striped">
+                                <table id="data" class="display expandable-table" style="width:100%">
                                     <thead>
                                         <th>#</th>
                                         <th>Name</th>
@@ -228,6 +228,7 @@ if(empty($_SESSION['email'])){
   <script src="../src/plugins/template/js/dashboard.js"></script>
   <script src="../src/plugins/template/js/Chart.roundedBarCharts.js"></script>
   <!-- End custom js for this page-->
+
 </body>
 
 </html>

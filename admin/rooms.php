@@ -183,7 +183,7 @@ if(empty($_SESSION['email'])){
                                     <input type="text" class="form-control form-control-sm" name="price" id="exampleInputEmail1" placeholder="Price">
                                 </div>
                                 <div class="form-group">
-                                    <input type="file" name="image" id="exampleInputPassword1" placeholder="Image">
+                                    <input type="file" name="image" id="exampleInputPassword1" placeholder="Image" accept="image/png, image/gif, image/jpeg">
                                 </div>
                                 <div class="mt-3">
                                     <input type="submit" class="btn btn-block btn-primary btn-md font-weight-medium auth-form-btn" name="add_room" value="SAVE">

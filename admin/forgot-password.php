@@ -11,15 +11,16 @@ function sendMail($email,$otp){
     require("Exception.php");
 
     $mail = new PHPMailer(true);
+    $err = '';
 
     try {
         //Server settings
        
         $mail->isSMTP();                                            //Send using SMTP
-        $mail->Host       = 'smtp.hostinger.com';                     //Set the SMTP server to send through
+        $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-        $mail->Username   = 'reservation@hotel-deluna-reservation.online';                     //SMTP username
-        $mail->Password   = 'mathewPOGI!@#123';                               //SMTP password
+        $mail->Username   = 'jijieazy13@gmail.com';                     //SMTP username
+        $mail->Password   = 'kxaeexkrxhyhypat';                               //SMTP password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
         $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
     
@@ -36,11 +37,34 @@ function sendMail($email,$otp){
 
 
         $mail->send();
+
+        // echo "<script>alert('SUCCESS')</script>";
+        $err = 'An Error has occured!';
+
         return true;
     } catch (Exception $e) {
         return false;
+        $err = 'An Error has occured!';
+
+        // echo "<script>alert('ERROR')</script>";
+
     }
     
+}
+if(isset($_POST['next'])){
+  $email = $_POST['email'];
+  $otp = rand('0000', '9999');
+  $err = '';
+  if(sendMail($email, $otp)){
+    header("Location: otp.php");
+    $_SESSION['otp'] = $otp;
+    $_SESSION['email'] = $email;
+  }else{
+    // echo "<script>alert('An error has occured')</script>";
+    $err = 'An Error has occured!';
+  }
+  // sendMail($email,$otp);
+ 
 }
 
 
@@ -79,6 +103,18 @@ $error = NULL;
               <h4 class="text-center h3">Forgot Password</h4>
               <h6 class="font-weight-light text-center">Enter Your Email to proceed.</h6>
               <form class="pt-3" action="" method="POST">
+              <?php 
+                if(isset($err) && $err != ''){
+                  ?>
+                  <div class="alert alert-danger" role="alert">
+                    <?= $err; ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <?php
+                }
+                ?>
                 <div class="form-group">
                     <label for="">Email</label>
                     <input type="text" class="form-control form-control-lg" name="email" placeholder="Email">
@@ -125,14 +161,7 @@ $error = NULL;
 </html>
 
 <?php
-if(isset($_POST['next'])){
-    $email = $_POST['email'];
-    $otp = rand('0000', '9999');
-    sendMail($email,$otp);
-    header("Location: otp.php");
-    $_SESSION['otp'] = $otp;
-    $_SESSION['email'] = $email;
-}
+
 
 ob_end_flush();
 

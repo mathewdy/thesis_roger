@@ -118,11 +118,14 @@ ob_start();
       <div class="main-panel">
         <div class="content-wrapper">
           <div class="row">
+            <div class="col-lg-12">
+              <button class="btn btn-sm btn-success print">Generate</button>
+            </div>
             <div class="col-md-12 grid-margin streach-card">
                 <div class="card position-relative">
                     <div class="card-body">
                         <div class="col-md-12">
-                            <div class="table-responsive">
+                            <div class="table-responsive d-table">
                                 <table id="data" class="display expandable-table table-striped" style="width:100%">
                                     <thead>
                                         <tr>
@@ -132,7 +135,7 @@ ob_start();
                                             <th>Contact Number</th>
                                             <th>Date In</th>
                                             <th>Date Out</th>
-                                            <th>Options</th>
+                                            <th class="option">Options</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -155,7 +158,7 @@ ob_start();
                                                         <td><?php echo $row['contact_number']?></td>
                                                         <td><?php echo $row['date_in']?></td>
                                                         <td><?php echo $row['date_out']?></td>
-                                                        <td><a href="delete-history.php?id=<?php echo $row['id']?>">Delete</a></td>
+                                                        <td class="option"><a href="delete-history.php?id=<?php echo $row['id']?>">Delete</a></td>
                                                     </tr>
 
                                                 <?php
@@ -209,7 +212,30 @@ ob_start();
   <script src="../src/plugins/template/js/Chart.roundedBarCharts.js"></script>
   <!-- End custom js for this page-->
 </body>
+<script>
+  $('#data').DataTable();
+</script>
+<script>
+  $('.print').on('click', function(){
+    var print = $('.d-table').html()
+    var mywindow = window.open('', 'print', 'height=400,width=600');
+    mywindow.document.write('<html><head><link href="../src/plugins/template/css/vertical-layout-light/style.csss" rel="stylesheet">');
+    mywindow.document.write('</head>');
+    mywindow.document.write('<style>.option{display: none;} .pagination{display: none;}.dataTables_filter{display:none;}.dataTables_length{display:none;} .dataTables_info{display:none;}</style>');
+    mywindow.document.write('<body>');
+    // mywindow.document.write('<h1>' + document.title  + '</h1>');
+    mywindow.document.write(print);
+    mywindow.document.write('</body></html>');
 
+    mywindow.document.close(); // necessary for IE >= 10
+    mywindow.focus(); // necessary for IE >= 10*/
+
+    mywindow.print();
+    mywindow.close();
+
+    return true;
+  })
+</script>
 </html>
 
 
