@@ -150,7 +150,7 @@ if(empty($_SESSION['email'])){
                                                         <td><?php echo $count?></td>
                                                         <td><?php echo $row['name']?></td>
                                                         <td><?php echo $row['email']?></td>
-                                                        <td><?php echo $row['password']?></td>
+                                                        <td><?php echo '*****';?></td>
                                                         <td>
                                                             <a href="edit-users.php?id=<?php echo $row['id']?>">Edit</a>
                                                             <a href="delete-users.php?id=<?php echo $row['id']?>">Delete</a>

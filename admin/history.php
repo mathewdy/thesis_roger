@@ -133,6 +133,7 @@ ob_start();
                                             <th>Name</th>
                                             <th>Room ID</th>
                                             <th>Contact Number</th>
+                                            <th>Price</th>
                                             <th>Date In</th>
                                             <th>Date Out</th>
                                             <th class="option">Options</th>
@@ -141,7 +142,7 @@ ob_start();
                                     <tbody>
                                     <?php
 
-                                        $sql = "SELECT * FROM history";
+                                        $sql = "SELECT history.id, history.reference_number, history.room_id, history.name, history.room_category_id, history.contact_number, history.date_in, history.date_out, history.date_created, room_category.id, room_category.price FROM history LEFT JOIN room_category On history.room_category_id = room_category.id";
                                         $run = mysqli_query($conn,$sql);
 
                                         if(mysqli_num_rows($run) > 0){
@@ -156,6 +157,7 @@ ob_start();
                                                         <td><?php echo $row['name']?></td>
                                                         <td><?php echo $row['room_id']?></td>
                                                         <td><?php echo $row['contact_number']?></td>
+                                                        <td><?php echo $row['price']?></td>
                                                         <td><?php echo $row['date_in']?></td>
                                                         <td><?php echo $row['date_out']?></td>
                                                         <td class="option"><a href="delete-history.php?id=<?php echo $row['id']?>">Delete</a></td>
@@ -223,7 +225,7 @@ ob_start();
     mywindow.document.write('</head>');
     mywindow.document.write('<style>.option{display: none;} .pagination{display: none;}.dataTables_filter{display:none;}.dataTables_length{display:none;} .dataTables_info{display:none;}</style>');
     mywindow.document.write('<body>');
-    // mywindow.document.write('<h1>' + document.title  + '</h1>');
+    mywindow.document.write('<h1> Hotel De Luna</h1>');
     mywindow.document.write(print);
     mywindow.document.write('</body></html>');
 

@@ -137,13 +137,14 @@ if(empty($_SESSION['email'])){
                                                 <th scope="col">Name</th>
                                                 <th scope="col">Contact Number</th>
                                                 <th>Room Category</th>
+                                                <th>Price</th>
                                                 <th>Modify</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                         <?php
 
-                                            $sql = "SELECT * FROM booked WHERE status = '2'";
+                                            $sql = "SELECT booked.id, booked.reference_number, booked.room_id, booked.name, booked.contact_number, booked.room_category_id, booked.date_created, booked.date_out, booked.date_in, room_category.id, room_category.price FROM booked LEFT JOIN room_category ON booked.room_category_id = room_category.id  WHERE status = '2'";
                                             $run = mysqli_query($conn,$sql);
                                             if(mysqli_num_rows($run) > 0){
                                                 $count = 0;
@@ -171,6 +172,7 @@ if(empty($_SESSION['email'])){
                                                                     }
                                                                 ?>
                                                             </td>
+                                                            <td><?php echo $row['price'];?></td>
                                                             <td>
                                                                 <!--dapat kapag pinindot na to, as CHECK OUT NA-->
                                                                 <form action="" method="POST">

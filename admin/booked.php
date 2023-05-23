@@ -130,6 +130,7 @@ if(empty($_SESSION['email'])){
                                             <th>#</th>
                                             <th scope="col">Reference #</th>
                                             <th scope="col">Room ID</th>
+                                            <th scope="col">Price</th>
                                             <th scope="col">Name</th>
                                             <th scope="col">Contact Number</th>
                                             <th scope="col">Date Created</th>
@@ -139,7 +140,7 @@ if(empty($_SESSION['email'])){
                                     <tbody>
                                         <?php
 
-                                            $sql = "SELECT * FROM booked WHERE status = '3'";
+                                            $sql = "SELECT booked.id, booked.reference_number, booked.room_id, booked.name, booked.contact_number, booked.room_category_id, booked.date_created, room_category.id, room_category.price FROM booked LEFT JOIN room_category ON booked.room_category_id = room_category.id  WHERE status = '3'";
                                             $run = mysqli_query($conn,$sql);
                                             if(mysqli_num_rows($run) > 0){
                                                 $count = 0;
@@ -151,6 +152,7 @@ if(empty($_SESSION['email'])){
                                                             <td><?php echo $count?></td>
                                                             <td><?php echo $row['reference_number']?></td>
                                                             <td><?php echo $row['room_id']?></td>
+                                                            <td><?php echo $row['price']?></td>
                                                             <td><?php echo $row['name']?></td>
                                                             <td><?php echo $row['contact_number']?></td>
                                                             <td><?php echo $row['date_created']?></td>
