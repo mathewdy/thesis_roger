@@ -25,7 +25,7 @@ function sendMail($email,$otp){
         $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
     
         //Recipients
-        $mail->setFrom('reservation@hotel-deluna-reservation.online', 'HBMS');
+        $mail->setFrom('jijieazy13@gmail.com', 'HBMS');
         $mail->addAddress($email);     //Add a recipient
     
         //Content

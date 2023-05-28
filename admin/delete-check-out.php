@@ -1,4 +1,5 @@
 <?php
+include('../connection.php');
 
 if(isset($_GET['id'])){
     $id = $_GET['id'];
@@ -7,7 +8,7 @@ if(isset($_GET['id'])){
     $run = mysqli_query($conn,$sql);
 
     if($run){
-        echo "<script>window.location.href='users.php' </script>";
+        echo "<script>window.location.href='check-out.php' </script>";
     }else{
         echo "error" . $conn->error;
     }

@@ -3,7 +3,7 @@
 include('../connection.php');
 session_start();
 ob_start();
-echo $_SESSION['email'];
+$_SESSION['email'];
 
 ?>
 <!DOCTYPE html>
@@ -93,7 +93,7 @@ if(isset($_POST['update'])){
     $email = $_SESSION['email'];
 
     if($password1 != $password2){
-        echo "Password doesn't match";
+        echo "<script>alert('Password Does not matched') </script>";
     }else{
         //update
 

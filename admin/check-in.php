@@ -145,7 +145,9 @@ if(empty($_SESSION['email'])){
                                         <tbody>
                                             <?php
 
-                                                $sql = "SELECT booked.id, booked.reference_number, booked.room_id, booked.name, booked.contact_number, booked.room_category_id, booked.date_created, room_category.id, room_category.price FROM booked LEFT JOIN room_category ON booked.room_category_id = room_category.id  WHERE status = '1'";
+                                            //SELECT booked.id, booked.reference_number, booked.room_id, booked.name, booked.contact_number, booked.room_category_id, booked.date_created, room_category.id, room_category.price FROM booked LEFT JOIN room_category ON booked.room_category_id = room_category.id  WHERE status = '1'
+
+                                                $sql = "SELECT * FROM booked WHERE status = '1'";
                                                 $run = mysqli_query($conn,$sql);
                                                 if(mysqli_num_rows($run) > 0){
                                                     $count = 0;
@@ -179,7 +181,7 @@ if(empty($_SESSION['email'])){
                                                                         <input type="hidden" name="reference_number" value="<?php echo $row['reference_number']?>" >
                                                                         <input type="submit" name="check_out" value="Check Out">
                                                                     </form>
-                                                                    <a href="delete-check-in.php">Delete</a>
+                                                                    <a href="delete-check-in.php?id=<?php echo $row['id']?>">Delete</a>
                                                                 </td>
                                                             </tr>
 

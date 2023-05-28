@@ -90,7 +90,7 @@ if(isset($_POST['next'])){
     if($_SESSION['otp'] == $otp){
         header('Location: update-password.php');
     }else{
-        echo "Error OTP, please check your email" ;
+        echo "<script>alert('Error OTP') </script>" ;
     }
 
 }

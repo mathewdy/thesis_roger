@@ -119,13 +119,44 @@ ob_start();
         <div class="content-wrapper">
           <div class="row">
             <div class="col-lg-12">
-              <button class="btn btn-sm btn-success print">Generate</button>
             </div>
             <div class="col-md-12 grid-margin streach-card">
                 <div class="card position-relative">
+                    <div class="card-header" style="background: none;">
+                      <span>
+                        <button class="btn btn-sm btn-success print">Generate</button>
+                        <!-- <select name="" id="">
+                          <option value=""></option>
+                          <option value="1">January</option>
+                          <option value="2">February</option>
+                          <option value="3">March</option>
+                          <option value="4">April</option>
+                          <option value="5">May</option>
+                          <option value="6">June</option>
+                          <option value="">July</option>
+                          <option value="">August</option>
+                          <option value="">September</option>
+                          <option value="">October</option>
+                          <option value="">November</option>
+                          <option value="">December</option> -->
+
+                        </select>
+                      </span>
+
+                    </div>
                     <div class="card-body">
                         <div class="col-md-12">
                             <div class="table-responsive d-table">
+                                <span id="logo" class="d-none" style="margin-bottom: 50px;display: flex; justify-content: space-between; align-items:center;">
+                                  <span style="width: 20%;">
+                                  <img src="image.jpg" alt="" style="height: 100px;">
+
+                                  </span>
+                                  <span style="width: 80%;">
+                                  <h2>Hotel De Luna</h2>
+                                  <h5>8010 Anonas, Sta. Mesa, Maynila, Kalakhang Maynila, Philippines</h5>
+                                  </span>
+                                </span>
                                 <table id="data" class="display expandable-table table-striped" style="width:100%">
                                     <thead>
                                         <tr>
@@ -220,12 +251,12 @@ ob_start();
 <script>
   $('.print').on('click', function(){
     var print = $('.d-table').html()
-    var mywindow = window.open('', 'print', 'height=400,width=600');
+    var mywindow = window.open('http://localhost/thesis_roger/admin/history.php', 'print', 'height=400,width=600');
     mywindow.document.write('<html><head><link href="../src/plugins/template/css/vertical-layout-light/style.csss" rel="stylesheet">');
     mywindow.document.write('</head>');
     mywindow.document.write('<style>.option{display: none;} .pagination{display: none;}.dataTables_filter{display:none;}.dataTables_length{display:none;} .dataTables_info{display:none;}</style>');
     mywindow.document.write('<body>');
-    mywindow.document.write('<h1> Hotel De Luna</h1>');
+    // mywindow.document.write('<h1> Hotel De Luna</h1>');
     mywindow.document.write(print);
     mywindow.document.write('</body></html>');
 
