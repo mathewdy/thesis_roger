@@ -177,16 +177,25 @@ if(empty($_SESSION['email'])){
                                                             <td><?php echo $row['price'];?></td>
                                                             <td>
                                                                 <!--dapat kapag pinindot na to, as CHECK OUT NA-->
-                                                                <form action="" method="POST">
-                                                                    <input type="hidden" name="reference_number" value="<?php echo $row['reference_number']?>" >
-                                                                    <input type="hidden" name="room_id" value="<?php echo $row['room_id']?>" >
-                                                                    <input type="hidden" name="name" value="<?php echo $row['name']?>" >
-                                                                    <input type="hidden" name="room_category_id" value="<?php echo $row['room_category_id']?>" >
-                                                                    <input type="hidden" name="contact_number" value="<?php echo $row['contact_number']?>">
-                                                                    <input type="hidden" name="date_in" value="<?php echo $row['date_in']?>">
-                                                                    <input type="hidden" name="date_out" value="<?php echo $row['date_out']?>">
-                                                                    <input type="submit" name="check_out" value="Check Out">
-                                                                </form>
+                                                               
+                                                                <!-- <input type="" class="btn btn-success" value="Check Out"> -->
+                                                                <button type="button" class="btn btn-success c_o" data-id="<?= $row['reference_number']?>">Check Out</button>
+                                                                <div class="modal fade" id="c_out" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                                                  <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content">
+                                                                      <div class="modal-header">
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                          <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                      </div>
+                                                                      <div class="modal-body">
+                                                                        <div class="rd">
+
+                                                                        </div>
+                                                                      </div>
+                                                                    </div>
+                                                                  </div>
+                                                                </div>
                                                                 <a href="delete-check-out.php?id=<?php echo $row['id']?>">Delete</a>
                                                             </td>
                                                         </tr>
@@ -246,6 +255,22 @@ if(empty($_SESSION['email'])){
       $('#data').DataTable();
     });
   </script>
+  <script>
+    $(document).ready(function(){
+      $('.c_o').on('click', function(){
+        var data = $(this).data('id');
+            $.ajax({
+                url: 'c_o.php',
+                type: 'post',
+                data: {data: data},
+                success: function(response){
+                    $('.rd').html(response);
+                    $('#c_out').modal('show');
+                }
+            });
+      })
+    })
+  </script>
 </body>
 
 </html>
@@ -264,6 +289,7 @@ if(isset($_POST['check_out'])){
     $contact_number = $_POST['contact_number'];
     $date_in = $_POST['date_in'];
     $date_out = $_POST['date_out'];
+    $amount = $_POST['payment'];
     $update = "UPDATE booked SET status = '$check' WHERE reference_number = '$reference_number' ";
     $run_update = mysqli_query($conn,$update);
 
@@ -279,7 +305,7 @@ if(isset($_POST['check_out'])){
         }else{
            //gagawa na ako ng insert sa history
 
-        $insert_history_query = "INSERT INTO history (reference_number,room_id,room_category_id,name,contact_number,date_in,date_out,date_created) VALUES('$reference_number', '$room_id', '$room_category_id','$name','$contact_number', '$date_in', '$date_out', '$date') ";
+        $insert_history_query = "INSERT INTO history (reference_number,room_id,room_category_id,name,contact_number,date_in,date_out,payment,date_created) VALUES('$reference_number', '$room_id', '$room_category_id','$name','$contact_number', '$date_in', '$date_out', '$amount', '$date') ";
         $run_history = mysqli_query($conn,$insert_history_query);
         echo "<script>window.location.href='history.php' </script>";
         
