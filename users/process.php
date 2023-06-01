@@ -6,7 +6,7 @@ ob_start();
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
-function sendMail($email,$check_in,$check_out,$full_name,$price){
+function sendMail($email,$check_in,$check_out,$full_name,$price, $days, $new_price){
     require ("PHPMailer.php");
     require("SMTP.php");
     require("Exception.php");
@@ -39,7 +39,9 @@ function sendMail($email,$check_in,$check_out,$full_name,$price){
         <br>
         Check Out: $check_out
         <br>
-        Amout to pay: $price
+        Approx. days of stay: $days
+        <br>
+        Amout to pay: $new_price
         <br>
 
         <strong>Note: If you didn't pay 30 minutes ahead of time , your reservation will be disregarded </strong>
@@ -76,10 +78,17 @@ if(isset($_POST['add_book'])){
     $category = $_POST['category'];
     $price = $_POST['price'];
 
+    // $date_in = date('Y-m-d', strtotime($check_in));
+    // $date_out = date('Y-m-d', strtotime($check_out));
+    $date_in = DateTime::createFromFormat('Y-m-d', $check_in);
+    $date_out = DateTime::createFromFormat('Y-m-d', $check_out);
+    // $date_in = new Datetime($check_in);
+    // $date_out = new DateTime($check_out);
+    $interval = $date_out->diff($date_in);
+    $days = $interval->format('%a');
+    // $days = $check_out->diff($check_in);
 
-
-
-
+    $new_price = $price * $days;
     $reference_number = rand('0000', '9999');
     $room_id = "Room" . rand('00','99');
 
@@ -88,9 +97,9 @@ if(isset($_POST['add_book'])){
 
     
     if($run_insert){
-        echo "<script>alert('Thank you for booking')</script>";
+        echo "<script>alert('Thank you for booking!')</script>";
         echo "<script>window.location.href='book.php' </script>";
-        sendMail($email,$check_in,$check_out,$full_name,$price);
+        sendMail($email,$check_in,$check_out,$full_name,$price, $days, $new_price);
         
        
      
