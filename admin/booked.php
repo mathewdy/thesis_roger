@@ -31,6 +31,17 @@ if(empty($_SESSION['email'])){
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
 </head>
+<style>
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+</style>
 <body>
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
@@ -153,24 +164,42 @@ if(empty($_SESSION['email'])){
                                                 $count = 0;
                                                 foreach($run as $row){
                                                     $count++;
+                                                    $check_in = $row['date_in'];
+                                                    $check_out = $row['date_out'];
+                                                    $date_in = DateTime::createFromFormat('Y-m-d', $check_in);
+                                                    $date_out = DateTime::createFromFormat('Y-m-d', $check_out);
+                                                    $interval = $date_out->diff($date_in);
+                                                    $days = $interval->format('%a');
+
+                                                    $new_price = $row['price'] * $days;
                                                     ?>
 
                                                         <tr>
                                                             <td><?php echo $count?></td>
                                                             <td><?php echo $row['reference_number']?></td>
                                                             <td><?php echo $row['room_id']?></td>
-                                                            <td><?php echo $row['price']?></td>
+                                                            <td><?php echo $new_price; ?></td>
                                                             <td><?php echo $row['name']?></td>
                                                             <td><?php echo $row['contact_number']?></td>
                                                             <td><?php echo $row['date_created']?></td>
                                                             <td>
+                                                              <a class="text-danger" href="delete-booked.php?id=<?php echo $row['id']?>">Delete</a>
+
                                                                 <!---kapag pinindot yung UPDATE-->
                                                                 <!---it's either profile OR another button to checked in--->
-                                                                <form action="" method="POST">
-                                                                    <input type="hidden" name="reference_number" value="<?php echo $row['reference_number']?>"> 
-                                                                    <input type="submit" name="checked_in" value="Check In">
-                                                                </form>
-                                                                <a href="delete-booked.php?id=<?php echo $row['id']?>">Delete</a>
+                                                                <button type="button" class="btn btn-success check" data-id="<?= $row ['reference_number']; ?>">Check In</button>
+                                                                <div class="modal fade" id="check_in" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                  <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content">
+
+                                                                      <div class="modal-body">
+                                                                        <div class="rd">
+                                                                            
+                                                                        </div>
+
+                                                                    </div>
+                                                                  </div>
+                                                                </div>
                                                             </td>
                                                         </tr>
 
@@ -229,6 +258,44 @@ if(empty($_SESSION['email'])){
       $('#data').DataTable();
     });
   </script>
+  <script>
+    $(document).ready(function() {
+        $(".amount").on("input", function() {
+            if ($(this).val().length > 13) {
+                $(this).val($(this).val().slice(0, 13));
+            }
+        });
+    });
+  </script>
+  <script>
+    $(document).ready(function(){
+      $('.check').on('click', function(){
+        alertBox();
+      })
+    })
+    function alertBox(){
+      var response = confirm("Does the customer pay?");
+            if (response == true) {
+                showModal();
+            }
+    }
+    function showModal() {
+      // $(document).ready(function(){
+        // $('.').click(function(){
+            var data = $('.check').data('id');
+            $.ajax({
+                url: 'b_1.php',
+                type: 'post',
+                data: {data: data},
+                success: function(response){
+                    $('.rd').html(response);
+                    $('#check_in').modal('show');
+                }
+            });
+        // });
+    // });
+        }
+  </script>
 </body>
 
 </html>
@@ -238,7 +305,8 @@ if(empty($_SESSION['email'])){
 if(isset($_POST['checked_in'])){
     $check = 1;
     $reference_number = $_POST['reference_number'];
-    $update = "UPDATE booked SET status = '$check' WHERE reference_number = '$reference_number' ";
+    $amount = $_POST['payment'];
+    $update = "UPDATE booked SET status = '$check', `payment` = '$amount' WHERE reference_number = '$reference_number' ";
     $run_update = mysqli_query($conn,$update);
 
     if($run_update){
